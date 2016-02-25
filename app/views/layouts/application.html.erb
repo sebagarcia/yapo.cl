@@ -7,11 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-<% if user_signed_in? %>
-	<%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %>
+
+<%- if user_signed_in? %>
+  <%=link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %>
 <% end %>
+
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -37,10 +41,28 @@
   </div>
 </nav>
 
-<div class="container">
-	<%= yield %>
-</div>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1597301293892289',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 </html>
